@@ -22,14 +22,14 @@ pip install -r requirements.txt
 To execute the data loader and retrieve the raw data
 
 ```bash
-python dataloader.py
+python data_loader.py
 ```
 
 ### Process the data
 To execute the data processor and transform the data
 
 ```bash
-python dataprocessor.py
+python datap_rocessor.py
 ```
 
 
