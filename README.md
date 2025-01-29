@@ -18,12 +18,20 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Running the Scraper
-To execute the scraper and retrieve restaurant data, run:
+### Load the raw data
+To execute the data loader and retrieve the raw data
+
+```bash
+python dataloader.py
+```
+
+### Process the data
+To execute the data processor and transform the data
 
 ```bash
 python dataprocessor.py
 ```
+
 
 ### Deploying with Flask
 To serve the data using a Flask application:
