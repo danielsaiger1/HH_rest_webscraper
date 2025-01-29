@@ -29,7 +29,7 @@ python data_loader.py
 To execute the data processor and transform the data
 
 ```bash
-python datap_rocessor.py
+python data_processor.py
 ```
 
 
