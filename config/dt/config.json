@@ -1,0 +1,6 @@
+{
+    "URL": "https://www.hamburg-tourism.de/shoppen-geniessen/restaurants-cafes/restaurants-von-a-bis-z/",
+    "output_dir" : "./output",
+    "input_path_read" : "./output",
+    "output_path_write" : "./api/data"
+}
