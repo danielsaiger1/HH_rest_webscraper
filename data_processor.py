@@ -9,11 +9,11 @@ class Dataprocessor:
     def __init__(self, input_path, output_path):
         self.input_path = input_path
         self.output_path = output_path
-    
+        self.today = datetime.today().strftime('%Y%m%d')
+        
     def load_data(self):
-        today = datetime.today().strftime('%Y%m%d')
         try:
-            with open(f"{self.input_path}/{today}_output_data.json", 'r') as f:
+            with open(f"{self.input_path}/{self.today}_output_data.json", 'r') as f:
                 self.data = json.load(f)
                 print("Data loaded successfully")
                 return self.data
@@ -30,23 +30,22 @@ class Dataprocessor:
     
     def split_address(self, address):
         # Regex für Adresse, die Hausnummer und PLZ zusammen enthält
-        pattern = r"^(.*?)(\d{1,3}[a-zA-Z]?)\s+(\d{5})\s+(.*)$"
+        pattern = r"^(.*\d\w?)(\d{5})\s+(.*)$"
         match = re.match(pattern, address)
         if match:
-            street = match.group(1).strip()
-            house_number = match.group(2)
-            postal_code = match.group(3)
-            city = match.group(4).strip()
-            return pd.Series([street, house_number, postal_code, city])
+            street_no = match.group(1) 
+            postal_code = match.group(2)
+            city = match.group(3)  # Hamburg  
+            return pd.Series([street_no, postal_code, city])
         else:
-            return pd.Series([None, None, None, None])
+            return pd.Series([None, None, None])
 
     def transform_addresses(self, df):
         # Wendet split_address auf jede Zeile der 'location'-Spalte an und gibt die neuen Spalten zurück
-        df[['street', 'house_number', 'postal_code', 'city']] = df['location'].apply(
+        df[['street_no', 'postal_code', 'city']] = df['location'].apply(
             lambda loc: self.split_address(loc)
         )
-        df = df.drop(columns=['location'])
+        #df = df.drop(columns=['location'])
         return df
 
     def save_data(self, input_data):
@@ -58,8 +57,7 @@ class Dataprocessor:
             if not os.path.exists(self.output_path):
                 os.makedirs(self.output_path)
                 
-            today = datetime.today().strftime('%Y%m%d')
-            file_path = os.path.join(self.output_path, f'{today}_data_transformed.json')
+            file_path = os.path.join(self.output_path, f'{self.today}_data_transformed.json')
             
             with open(file_path, 'w') as f:
                 json.dump(input_data, f)  # Ensures pretty printing of the JSON data

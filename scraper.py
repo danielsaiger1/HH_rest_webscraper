@@ -23,6 +23,7 @@ class Scraper:
         return driver
     
     def load_page_raw(self) -> str:
+        self.driver = self.create_driver()
         """
         Lädt die Seite und gibt den rohen HTML-Code zurück.
         """
@@ -103,8 +104,8 @@ class Scraper:
 
             # Subpage-Links sammeln
             links = [
-                f"https://www.hamburg-tourism.de{article.find('a')['href']}"
-                for article in listings if article.find('a')
+                f"https://www.hamburg-tourism.de{article.find('a', class_='listTeaser__link')['href']}"
+                for article in listings
             ]
 
             # Subpage-Daten parallel laden
@@ -124,10 +125,10 @@ class Scraper:
 
                 cuisine_type = [i for i in features if i in cuisine_types]
                 
-                type = 'N/A'
+                rest_type = 'N/A'
                 for i in features:
                     if i in ['Restaurant', 'Café/Bistro']:
-                        type = i
+                        rest_type = i
                         break
 
                 features = [feature for feature in features if feature not in ['Restaurant', 'Café/Bistro', '€€€']]
@@ -136,14 +137,16 @@ class Scraper:
                 restaurants[idx] = {
                     'name': name,
                     'description': description,
-                    'type': type,
+                    'rest_type': rest_type,
                     'cuisine_type': cuisine_type,
                     'location': location,
                     'features': features,
                     'link': links[idx],
                     'sublink': sub_link
                 }
-
+                
+                print(links[idx])
+                
             logging.info("Daten erfolgreich geladen.")
             return restaurants
         
