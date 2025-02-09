@@ -19,6 +19,7 @@
    </head>
     <body id="page-top">
         <!-- Navigation-->
+        {% block navigation %}
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">Restaurants Hamburg</a>
@@ -34,6 +35,7 @@
                 </div>
             </div>
         </nav>
+        {% endblock %}
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
@@ -56,68 +58,7 @@
                 {% block content_block %}{% endblock %}
             </div>
         </section>
-       <!-- Contact Section-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Dein Lieblingsrestaurant fehlt? </h2>
-                <h4 class="page-section-sub-heading text-center text-uppercase text-secondary mt-4">Schreib mir hier und es wird der Liste hinzugefügt </h4>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="a877e562-d7d6-40c3-84b0-4da0d5848821">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Name des Restaurants" data-sb-validations="required" />
-                                <label for="name">Name des Restaurants</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="restaurant_webpage" type="text" placeholder="Website (optional)" />
-                                <label for="email">Restaurant Website (optional)</label>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Nachricht eingeben..." style="height: 10rem"></textarea>
-                                <label for="message">Deine Nachricht (optional)</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Vielen Dank für deine Nachricht!</div>
-                                    Das Restaurant wird zeitnah zur Liste hinzugefügt
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Ein Fehler ist aufgetreten!</div></div>
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- Footer-->
         <footer class="footer text-center">
             <div class="container">
